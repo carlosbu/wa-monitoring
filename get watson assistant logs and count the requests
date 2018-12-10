@@ -1,14 +1,13 @@
 /**
-* author: Carlos Buzeto
-* code: Node.js 8
-*
-* Retrieve Watson Assistant conversation log, sum up number of interactions each `period`,
-* then return a json object ready to be injested to IBM cloud monitoring
-*
-* params: 
-*   workspaces_id, username, page_limit, authorization, period, password
-*/
-
+  *
+  * @author Carlos Buzeto
+  * 
+  * Retrieve Watson Assistant conversation log, sum up number of interactions each `period`,
+  * then return a json object ready to be injested to IBM cloud monitoring
+  *
+  * @param workspaces_id, username, page_limit, authorization, period, password.
+  *
+  */
 
 
 function main(params) {
