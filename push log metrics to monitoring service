@@ -1,0 +1,41 @@
+/**
+  *
+  * @author Carlos Buzeto
+  * 
+  * receive a json file and send it to IBM Cloud Monitoring - 
+  * https://console.bluemix.net/docs/services/cloud-monitoring/send_retrieve_metrics_ov.html#send_retrieve_metrics_ov
+  *
+  * @param token, spaceHomologacao, spaceProducao, JSON object.
+  *
+  */
+
+function main(params) {
+    const pusher = pushLogMetrics (params);
+    return pusher
+        .then (res => ({processed: `Request has been processed: ${pusher}.`}))
+        .catch(err => ({ error: `There was an error: ${err}.`}))
+}
+    
+function pushLogMetrics (params){
+    const logMetricsData = (JSON.stringify(params.result));
+    
+    console.log (params.result);
+    
+    const request = require('request-promise');
+    const options = {
+        method: 'POST',
+        uri: 'https://metrics.ng.bluemix.net/v1/metrics',
+        headers: {
+            'x-auth-scope-id': params.spaceProducao,
+            'x-auth-user-token': params.token,
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(logMetricsData)
+        },
+        body: logMetricsData
+    };
+    
+    const rp = request(options)
+    return rp
+        .then (res => ({processed: `Request has been processed: ${res}.`}))
+        .catch(err => ({ error: `There was an error: ${err}.`}))
+}
