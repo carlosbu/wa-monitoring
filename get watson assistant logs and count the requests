@@ -61,7 +61,7 @@ async function length(params) {
     
     count = count + Object.keys(logs.logs).length;
     
-return ({"result": [{"name": "watson-assistant.api.questions.meter.current.cliente-institucional", "value": count}]});
+return ({"result": [{"name": "watson-assistant.api.questions.meter.poupinha", "value": count}]});
 }
 
 async function loadLogs (logs, params) {
